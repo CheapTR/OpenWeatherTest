@@ -12,6 +12,7 @@ namespace OpenWeatherAPITests
         public async void GetOneCallAsync_IfAPIKeyEmptyOrNull_ThrowArgumentException()
         {
             //Arrange
+            OWP.ApiKey = null;
             //Act
             //Assert
             var ex = await Assert.ThrowsAsync<ArgumentException>(OWP.GetOneCallAsync);
@@ -22,6 +23,7 @@ namespace OpenWeatherAPITests
         public async void GetCurrentWeatherAsync_IfApiKeyEmptyOrNull_ThrowArgumentException()
         {
             //Arrange
+            OWP.ApiKey = null;
             //Act
             //Assert
             var ex = await Assert.ThrowsAsync<ArgumentException>(OWP.GetCurrentWeatherAsync);
@@ -38,8 +40,14 @@ namespace OpenWeatherAPITests
             Assert.Contains("ApiClient not initialized!", ex.Message);
         }
         [Fact]
-        public void GetCurrentWeatherAsync_IfApiHelperNotInitialized_ThrowArgumentException()
+        public async void GetCurrentWeatherAsync_IfApiHelperNotInitialized_ThrowArgumentException()
         {
+            //Arrange
+            OWP.ApiKey = "ADWE"; //matter pas trop si on le fait ou pas vu que c'est un singleton
+            //Act
+            //Assert
+            var ex = await Assert.ThrowsAsync<ArgumentException>(OWP.GetOneCallAsync);
+            Assert.Contains("ApiClient not initialized!", ex.Message);
         }
     }
 }

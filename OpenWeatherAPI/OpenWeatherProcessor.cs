@@ -121,6 +121,11 @@ namespace OpenWeatherAPI
 
         private async Task<OWCurrentWeaterModel> doCurrentWeatherCall()
         {            
+            
+            if (ApiHelper.ApiClient == null)
+            {
+                throw new ArgumentException("ApiClient not initialized!");
+            }
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(longUrl))
             {
                 if (response.IsSuccessStatusCode)
