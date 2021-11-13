@@ -85,7 +85,7 @@ namespace OpenWeatherAPI
             /// Src : https://stackoverflow.com/a/14517976/503842
             var uriBuilder = new UriBuilder($"{BaseURL}{EndPoint}");
 
-            if((ApiKey == null) || (ApiKey == ""))
+            if ((ApiKey == null) || (ApiKey == ""))
             {
                 throw new ArgumentException("ApiKey null or empty!");
             }
@@ -103,7 +103,10 @@ namespace OpenWeatherAPI
 
         private async Task<OpenWeatherOneCallModel> doOneCall()
         {
-
+            if (ApiHelper.ApiClient == null)
+            {
+                throw new ArgumentException("ApiClient not initialized!");
+            }
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(longUrl))
             {
                 if (response.IsSuccessStatusCode)

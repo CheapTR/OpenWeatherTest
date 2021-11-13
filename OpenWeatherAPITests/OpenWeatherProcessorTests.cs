@@ -28,8 +28,14 @@ namespace OpenWeatherAPITests
             Assert.Contains("ApiKey null or empty!", ex.Message);
         }
         [Fact]
-        public void GetOneCallAsync_IfApiHelperNotInitialized_ThrowArgumentException()
+        public async void GetOneCallAsync_IfApiHelperNotInitialized_ThrowArgumentException()
         {
+            //Arrange
+            OWP.ApiKey = "ADWE"; 
+            //Act
+            //Assert
+            var ex = await Assert.ThrowsAsync<ArgumentException>(OWP.GetOneCallAsync);
+            Assert.Contains("ApiClient not initialized!", ex.Message);
         }
         [Fact]
         public void GetCurrentWeatherAsync_IfApiHelperNotInitialized_ThrowArgumentException()
