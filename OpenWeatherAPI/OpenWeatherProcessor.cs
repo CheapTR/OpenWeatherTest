@@ -56,6 +56,7 @@ namespace OpenWeatherAPI
             /// Src : https://stackoverflow.com/a/14517976/503842
             var uriBuilder = new UriBuilder($"{BaseURL}{EndPoint}");
 
+
             var query = HttpUtility.ParseQueryString(uriBuilder.Query);
             query["lat"] = Latitude; // Shawinigan
             query["lon"] = Longitude;
