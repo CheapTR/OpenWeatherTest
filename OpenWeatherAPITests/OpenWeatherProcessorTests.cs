@@ -6,6 +6,7 @@ namespace OpenWeatherAPITests
 {
     public class OpenWeatherProcessorTests
     {
+        //ce commentaire est juste pour changer quelque chose pour le commit
         OpenWeatherProcessor OWP = OpenWeatherProcessor.Instance;
 
         [Fact]
