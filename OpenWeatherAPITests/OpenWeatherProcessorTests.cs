@@ -19,8 +19,13 @@ namespace OpenWeatherAPITests
         }
 
         [Fact]
-        public void GetCurrentWeatherAsync_IfApiKeyEmptyOrNull_ThrowArgumentException()
+        public async void GetCurrentWeatherAsync_IfApiKeyEmptyOrNull_ThrowArgumentException()
         {
+            //Arrange
+            //Act
+            //Assert
+            var ex = await Assert.ThrowsAsync<ArgumentException>(OWP.GetCurrentWeatherAsync);
+            Assert.Contains("ApiKey null or empty!", ex.Message);
         }
         [Fact]
         public void GetOneCallAsync_IfApiHelperNotInitialized_ThrowArgumentException()
